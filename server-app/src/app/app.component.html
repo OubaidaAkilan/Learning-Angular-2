@@ -1,0 +1,14 @@
+<h1 class="container">Add new server or blueprints!</h1>
+
+<div class="container">
+  <app-cockpit
+    (serverCreated)="onServerAdded($event)"
+    (bpCreated)="onBlueprintAdded($event)"
+  ></app-cockpit>
+
+  <hr />
+  <app-server-element
+    *ngFor="let server of serverElements; let idx = index"
+    [srvElement]="server"
+  ></app-server-element>
+</div>

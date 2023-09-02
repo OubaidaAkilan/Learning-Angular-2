@@ -1,36 +1,14 @@
-<h1 class="container">My Server</h1>
+<h1 class="container">Add new server or blueprints!</h1>
 
 <div class="container">
-  <div class="input-group input-group-sm mb-3">
-    <span class="input-group-text" id="inputGroup-sizing-sm">Server name</span>
-    <input
-      
-      type="text"
-      class="form-control"
-      aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-sm"
-    />
-  </div>
-  <button
-    [ngStyle]="{
-      margin: '1rem 0'
-    }"
-    class="btn btn-primary"
-    (click)="addNewServer()"
-  >
-    Add server
-  </button>
+  <app-cockpit
+    (serverCreated)="onServerAdded($event)"
+    (bpCreated)="onBlueprintAdded($event)"
+  ></app-cockpit>
 
-  <p
-    *ngFor="let server of servers; let idx = index"
-    (click)="removeServer(idx)"
-    class="lead"
-    [ngStyle]="{
-      backgroundColor: '#faeee7',
-      padding: '1rem',
-      margin: '1rem 0'
-    }"
-  >
-    {{ server }}
-  </p>
+  <hr />
+  <app-server-element
+    *ngFor="let server of serverElements; let idx = index"
+    [srvElement]="server"
+  ></app-server-element>
 </div>

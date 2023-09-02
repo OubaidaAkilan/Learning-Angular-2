@@ -1,0 +1,14 @@
+<div class="container">
+  <p>{{ element.name }}</p>
+  <p
+    class="lead"
+    [ngStyle]="{
+      backgroundColor: '#faeee7',
+      padding: '1rem',
+      margin: '1rem 0'
+    }"
+  >
+    <strong *ngIf="element.type === 'server'">{{ element.content }}</strong>
+    <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
+  </p>
+</div>

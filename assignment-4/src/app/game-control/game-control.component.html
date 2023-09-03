@@ -1,0 +1,7 @@
+<div class="container">
+    <p class="h3" #incrementingNumber>{{ lastNumber }}</p>
+    <button class="btn btn-primary" [ngStyle]="{ marginRight: '1rem' }" (click)="onStart()">
+    Start
+  </button>
+    <button class="btn btn-danger" (click)="clearTimer()">Stop</button>
+</div>

@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
   }
 
   login() {
-    debugger;
     this.authServic.login();
   }
 

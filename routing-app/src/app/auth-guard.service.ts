@@ -22,9 +22,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
     return this.authService
       .isAuthenticated()
       .then((authenticated: boolean): any => {
-        debugger;
         if (authenticated) {
-          debugger;
           return true;
         } else {
           this.router.navigate(['/']);
@@ -39,7 +37,6 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | Observable<boolean> | Promise<boolean> | boolean {
-    debugger;
     return this.canActivate(childRoute, state);
   }
 }

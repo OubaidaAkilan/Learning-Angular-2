@@ -24,3 +24,5 @@ export class DropdownMenuDirective {
 /* ['$event']: This part is an array that specifies what event data to pass to the method
  when the event occurs. In this case, it's passing the $event object, 
  which contains information about the click event, to the method. */
+
+ 

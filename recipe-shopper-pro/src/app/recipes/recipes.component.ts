@@ -8,18 +8,10 @@ import { Ingredient } from '../shared/ingredient.model';
   styleUrls: ['./recipes.component.css'],
 })
 export class RecipesComponent implements OnInit {
-  onRecipeItemSelected: Recipe = {
-    name: '',
-    description: '',
-    imagePath: '',
-    ingredients: [],
-  };
 
   constructor(private recipesService: RecipesService) {}
 
   ngOnInit() {
-    this.recipesService.recipeSelected.subscribe((recipe: Recipe) => {
-      this.onRecipeItemSelected = recipe;
-    });
+
   }
 }

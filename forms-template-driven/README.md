@@ -34,7 +34,7 @@ For form validations, you can utilize various HTML attributes:
 - email: When you want to collect email addresses, apply the email attribute to validate that the input contains a valid email format.
 - pattern (Regular Expression): To specify custom validation rules using regular expressions, add the pattern attribute. For example, if you want to accept positive numbers greater than zero, you can define a pattern like this:
   ```html
-   <input name="username" required pattern="^[1-9]+[0-9]*$" />
+   <input ngModel name="username" required pattern="^[1-9]+[0-9]*$" />
    ```
 This pattern restricts the input to positive numbers greater than zero.
 By following these steps and using these validation attributes, you can easily create a template-driven form in your Angular application.

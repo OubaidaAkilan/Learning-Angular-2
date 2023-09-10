@@ -9,9 +9,9 @@ To connect your HTML form with your TypeScript (TS) business logic, follow these
 1. **Import FormsModule**: Inside your `app.module.ts` file, make sure to import the `FormsModule` module.
 
 2. **Define the Form Tag**: In your HTML file, define your form using the `ngForm` directive. You can do this by adding `#f="ngForm"` to your form tag like this:
-   ```html
-   <form #f="ngForm">
-   ```
+```html
+  <form #f="ngForm">
+```
 3. **Pass the Form**: To connect your form with your business logic, use the onSubmit event and pass the form. Here's an example:
   ```html
    <form #f="ngForm" (ngSubmit)="addProduct(f)">
@@ -34,7 +34,7 @@ For form validations, you can utilize various HTML attributes:
 - email: When you want to collect email addresses, apply the email attribute to validate that the input contains a valid email format.
 - pattern (Regular Expression): To specify custom validation rules using regular expressions, add the pattern attribute. For example, if you want to accept positive numbers greater than zero, you can define a pattern like this:
   ```html
-   <form #f="ngForm">
+   <input name="username" required pattern="^[1-9]+[0-9]*$" />
    ```
 This pattern restricts the input to positive numbers greater than zero.
 By following these steps and using these validation attributes, you can easily create a template-driven form in your Angular application.

@@ -170,6 +170,9 @@ html.file
             *ngFor="let ingredientCtrl of controls; let i = index"
             [formGroupName]="i"
           >
+<!-- The formGroupName directive above ensures that the form control structure is correctly associated with each <div> element,
+allowing for effective data binding and form handling.
+ -->
             <div class="col-xs-8">
               <input type="text" class="form-control" formControlName="name" />
             </div>

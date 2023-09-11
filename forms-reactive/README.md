@@ -1,6 +1,6 @@
-# Reactive-Form README
+# Reactive-Form
 
-This README provides step-by-step instructions on how to create and work with a reactive form in your Angular application. A reactive form is a powerful way to manage forms in Angular using TypeScript.
+This README provides instructions on how to create and work with a reactive form in your Angular application. A reactive form is a powerful way to manage forms in Angular using TypeScript.
 
 ## Steps
 

@@ -2,9 +2,8 @@
 
 This README provides instructions on how to create and work with a reactive form in your Angular application. A reactive form is a powerful way to manage forms in Angular using TypeScript.
 
-## Steps
 
-### A. Bind the Form (HTML file) with Business Logic (TS file)
+## Bind the Form (HTML file) with Business Logic (TS file)
 
 1- Import the `ReactiveFormsModule` within your `app.module.ts` file:
 
@@ -65,7 +64,7 @@ this.signupForm = new FormGroup({
 </span>
 
   ```
-### B. Validations
+## Validations
 Note that you cannot use HTML attribute validations (e.g., `required`, `email`, `pattern`) with reactive forms. Instead, use the following methods:
 1- Built-in Validators:
 ```typescript

@@ -115,3 +115,75 @@ forbiddenEmails(control: FormControl): Promise<any> | Observable<any> | null {
 }
 
 ```
+
+## Form Array
+ Is a class in Angular's reactive forms that represents an array of form controls or form groups. It's used to manage a collection of related form controls within a form.
+After creating this recipeIngredients FormArray, you can add form controls or form groups to it dynamically using methods like push, insert, or removeAt. It's a way to manage a dynamic list of form elements within a reactive form.
+```typescript
+  private initForm() {
+    let recipeName = '';
+    let recipeImagePath = '';
+    let recipeDescription = '';
+// 1
+    let recipeIngredients = new FormArray(<any>[]); //===== creating a new instance of a `FormArray` in Angular.
+
+    if (this.editMode) {
+      const recipe = this.recipeService.getRecipe(this.id);
+      recipeName = recipe.name;
+      recipeImagePath = recipe.imagePath;
+      recipeDescription = recipe.description;
+
+      if (recipe['ingredients']) {
+        for (let ingredient of recipe['ingredients']) {
+// 2
+          recipeIngredients.push(
+            new FormGroup({
+              name: new FormControl(ingredient.name),
+              amount: new FormControl(ingredient.amount),
+            })
+          );
+        }
+      }
+    }
+
+    this.recipeFrom = new FormGroup({
+      name: new FormControl(recipeName),
+      imagePath: new FormControl(recipeImagePath),
+      description: new FormControl(recipeDescription),
+      ingredients: recipeIngredients,
+    });
+  }
+
+// 3 
+  get controls() {
+    // a getter!  To access a specific control within an Angular reactive form using the get method and casting it to the FormArray type.
+    return (this.recipeFrom.get('ingredients') as FormArray).controls;
+  }
+```
+html.file
+```html
+      <div class="row">
+        <div class="col-xs-12" formArrayName="ingredients">
+          <div
+            [ngStyle]="{ marginBottom: '1.5rem' }"
+            class="row"
+            *ngFor="let ingredientCtrl of controls; let i = index"
+            [formGroupName]="i"
+          >
+            <div class="col-xs-8">
+              <input type="text" class="form-control" formControlName="name" />
+            </div>
+            <div class="col-xs-2">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="amount"
+              />
+            </div>
+            <div class="col-xs-2">
+              <button class="btn btn-danger" type="button">X</button>
+            </div>
+          </div>
+        </div>
+      </div>
+```

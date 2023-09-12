@@ -35,4 +35,88 @@ constructor(private accountService: AccountService) {}
 * APPModule => Same instance of service is availabe Application-wide.
 * AppComponent => Same instance of service is available for all components "But not for other services".
 * Any Other Component => Same instance of service is available for the component and all its children components. 
+## Full Example:
+account.service.ts
+```typescript
+import { EventEmitter, Injectable } from '@angular/core';
 
+@Injectable({
+  providedIn: 'root',
+  /* 
+  The "new syntax" does offer one advantage though: Services can be loaded lazily by Angular
+   (behind the scenes) and redundant code can be removed automatically. 
+   This can lead to a better performance and loading speed - though this really
+   only kicks in for bigger services and apps in general.
+  */
+})
+export class AccountService {
+  accounts = [
+    {
+      name: 'Master Account',
+      status: 'active',
+    },
+    {
+      name: 'Testaccount',
+      status: 'inactive',
+    },
+    {
+      name: 'Hidden Account',
+      status: 'unknown',
+    },
+  ];
+
+  statusUpdated = new EventEmitter<string>();
+
+  addAccount(newAccount: { name: string; status: string }) {
+    this.accounts.push(newAccount);
+  }
+
+  updateStatus(updateInfo: { id: number; newStatus: string }) {
+    this.accounts[updateInfo.id].status = updateInfo.newStatus;
+  }
+
+  constructor() {}
+}
+```
+loggingservice.service.ts
+```typescript
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class LoggingService {
+  constructor() {}
+
+  logStatus(status: string): void {
+    console.log(`your status account is : ${status}`);
+  }
+}
+```
+account.component.ts
+```typescript
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { LoggingServiceService } from '../logging-service.service';
+import { AccountService } from '../services/account.service';
+
+@Component({
+  selector: 'app-account',
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.css'],
+})
+export class AccountComponent {
+  @Input() account: { name: string; status: string } = { name: '', status: '' };
+  @Input() id: number = 0;
+
+  constructor(
+    private accountService: AccountService,
+    private LoggingServiceService: LoggingServiceService
+  ) {}
+
+  SetTo(status: string) {
+    this.accountService.updateStatus({ id: this.id, newStatus: status });
+    this.LoggingServiceService.logStatus(status);
+    this.accountService.statusUpdated.emit(status);
+  }
+}
+```

@@ -1,15 +1,15 @@
 # Services Dependency Injection App
 
 ## Dependency Injection DI
-Dependencies: It is tools like (data or methods, featuers) whereas we can add it into the component to work correctly.  
+**Dependencies:** It is tools like (data or methods, featuers) whereas we can add it into the component to work correctly.  
 
 Assume we have a treehouse as a component and to be the treehouse intresting and funny we should provide a ladder for it.  
 A ladder here as (Dependencies) because the treehouse that represent a (component) depend on it, and here when you try to provide the depndencies for the component called (Dependency Injection).  
 
-Dependency Injection: Provide and inject dependencies like services into components, in another meaning it is an encapsulate logic you can share it with many components.
+**Dependency Injection:** Provide and inject dependencies like services into components, in another meaning it is an encapsulate logic you can share it with many components.
 
 ## Steps to create a service
-* You can cerate a service utilizes CLI 
+* You can create a service utilizes CLI 
 ```bash
 ng g s [service-name]
 ```

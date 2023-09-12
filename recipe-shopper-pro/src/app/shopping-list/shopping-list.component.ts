@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-list',
@@ -19,5 +20,9 @@ export class ShoppingListComponent implements OnInit {
 
   saveIngredient(item: Ingredient) {
     this.ingredients.push(item);
+  }
+
+  onEditItem(index: number): void {
+    this.shoppingListService.startedEditing.next(index);
   }
 }

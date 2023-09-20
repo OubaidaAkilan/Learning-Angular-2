@@ -225,3 +225,35 @@ public count = this.store.select( selectTheNumber );
     this.store.dispatch( inecrementCounter( { increaseBy: 2 } ) );
   }
 ```
+
+app.component.ts
+
+```typescript
+
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import {
+  decrementCounter,
+  inecrementCounter,
+} from './store/counterState/counter.actions';
+import { selectTheNumber } from './store/counterState/counter.selectors';
+import { StoreState } from './store/store';
+
+@Component( {
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: [ './app.component.scss' ],
+} )
+export class AppComponent {
+  public count = this.store.select( selectTheNumber );
+
+  constructor ( private store: Store<StoreState> ) { }
+
+  increase(): void {
+    this.store.dispatch( inecrementCounter( { increaseBy: 2 } ) );
+  }
+
+  decrease(): void {
+    this.store.dispatch( decrementCounter( { decreaseBy: 1 } ) );
+  }
+}

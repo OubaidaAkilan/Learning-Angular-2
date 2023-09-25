@@ -5,6 +5,8 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { EditRecipeComponent } from './recipes/recipe-edit/edit-recipe.component';
+import { RecipesResolveService } from './recipes/recipes-resolve.service';
+import { AuthComponent } from './auth/auth.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -22,6 +24,7 @@ const appRoutes: Routes = [
         path: ':id',
         component: RecipeDetailComponent,
         pathMatch: 'full',
+        resolve: [ RecipesResolveService ]
       },
       {
         path: ':id/edit',
@@ -35,9 +38,14 @@ const appRoutes: Routes = [
     component: ShoppingListComponent,
     pathMatch: 'full',
   },
+  {
+    path: 'auth',
+    component: AuthComponent,
+    pathMatch: 'full',
+  },
 ];
-@NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}
+@NgModule( {
+  imports: [ RouterModule.forRoot( appRoutes ) ],
+  exports: [ RouterModule ],
+} )
+export class AppRoutingModule { }

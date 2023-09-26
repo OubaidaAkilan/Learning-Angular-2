@@ -1,27 +1,54 @@
 # RoutingApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+## Navigation
 
-## Development server
+We can navigate using two methods:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1- Declarative Navigation
 
-## Code scaffolding
+- is when you use Angular directives like routerLink in your templates to define navigation links.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- This method allows you to define navigation links directly in your HTML templates without writing TypeScript code.
 
-## Build
+[Example in my code](https://github.com/OubaidaAkilan/Learning-Angular-2/blob/main/routing-app/src/app/app.component.html).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- If you want to add custom style to links you can use the routerLinkActive="your.class" directive.
 
-## Running unit tests
+- If you want to custom style for exact path like /home/detail you can use the [routerLinkActiveOptions]="{ exact: true }" directive, this option will match the same path to apply your custom style.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```typescript
+<ul>
+  <li routerLinkActive="your.class"><a routerLink="/home">Home</a></li>
+  <li  routerLinkActive="another.class"><a routerLink="/about">About</a></li>
+</ul>
 
-## Running end-to-end tests
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+2- Programmatic Navigation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- is when you use TypeScript code to navigate from one component to another, the main class  responsible for programmatic navigation is the Router class from @angular/router.  
+
+- we typically inject the Router service into your component and use its methods like navigateByUrl() or navigate() to navigate to different routes.
+
+[Example in my code](https://github.com/OubaidaAkilan/Learning-Angular-2/blob/main/routing-app/src/app/servers/servers.component.ts).
+
+```typescript
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-example',
+  template: `
+    <button (click)="navigateToHome()">Go to Home</button>
+  `,
+})
+export class ExampleComponent {
+  constructor(private router: Router) {}
+
+  navigateToHome() {
+    this.router.navigate(['/home']); // Navigate to the 'home' route
+  }
+}
+
+```

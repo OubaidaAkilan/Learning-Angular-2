@@ -7,6 +7,7 @@ import { RecipesService } from '../../recipes.service';
   styleUrls: ['./recipe-item.component.css'],
 })
 export class RecipeItemComponent implements OnInit {
+  @Input('recipeId') id: number = 0;
   @Input('recipeItem') recipe: Recipe = {
     name: '',
     description: '',
@@ -14,9 +15,7 @@ export class RecipeItemComponent implements OnInit {
     ingredients: [],
   };
 
-  selectRecipe() {
-    this.recipesService.recipeSelected.emit(this.recipe);
-  }
+
 
   constructor(private recipesService: RecipesService) {}
 

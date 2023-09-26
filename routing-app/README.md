@@ -1,5 +1,6 @@
 # RoutingApp
 
+
 ## Navigation
 
 We can navigate using two methods:
@@ -52,3 +53,6 @@ export class ExampleComponent {
 }
 
 ```
+
+- [Lazy Loading](https://www.digitalocean.com/community/tutorials/angular-lazy-loading)
+

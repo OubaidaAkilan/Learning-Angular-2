@@ -6,7 +6,6 @@
     </button>
     <div class="list-group">
       <a
-        href="#"
         [routerLink]="['/servers', server.id]"
         [queryParams]="{ allowEdit: server.id === 3 ? '1' : '0' }"
         fragment="loading"

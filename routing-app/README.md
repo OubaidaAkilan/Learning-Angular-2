@@ -1,5 +1,6 @@
 # RoutingApp
 
+
 ## Navigation
 
 We can navigate using two methods:
@@ -48,11 +49,17 @@ We can navigate using two methods:
 
 - Is when you use TypeScript code to navigate from one component to another, the main class  responsible for programmatic navigation is the Router class from @angular/router.  
 
-- we typically inject the Router service into your component and use its methods like navigateByUrl() or navigate() to navigate to different routes.
+- we typically inject the Router service into your component and use its method like `navigate()` to navigate to different routes.
 
 [Example in my code](https://github.com/OubaidaAkilan/Learning-Angular-2/blob/main/routing-app/src/app/servers/servers.component.ts).
 
 - The navigate() method receives an array of route segments or a string specifying the destination route.
+
+String specifying the destination route.
+
+```typescript
+this.router.navigate('products/123/details');
+```
 
 Array of route segments
 
@@ -86,8 +93,56 @@ export class ExampleComponent {
 
 ```
 
-String specifying the destination route.
+Here you can add more configration for the route like  
+
+`relativeTo` :that meaning this new route `edit` is related with the current route for example, if the current route is `localhost:4200/server`, and you want to navigate into `localhost:4200/server/edit` you can use the `relativeTo` option to keep the current route.
 
 ```typescript
-this.router.navigate('products/123/details');
+
+ onEdit() {
+    this.router.navigate(['edit'], {
+      relativeTo: this.route,
+      queryParamsHandling:'preserve'
+      // queryParams: { allowEdit: this.route.snapshot.queryParams['allowEdit'] },
+    });
+  }
+
 ```
+
+`queryParamsHandling` : it is allowing us to control how query parameters are handled during navigation.
+
+- `preserve` If you use 'preserve', it will preserve the existing query parameters and add the new ones without overwriting anything assume you have the following URL `/products?category=electronics&sort=price
+`:
+
+```typescript
+
+this.router.navigate(['edit'], {
+  relativeTo: this.route,
+  queryParamsHandling: 'preserve',
+  queryParams: { sort: 'date', filter: 'new' }
+});
+
+
+```
+
+Resulting URL: `/products/edit?category=electronics&sort=price&sort=date&filter=new`,
+>Notice that it preserved the original 'sort=price' parameter and added the new 'sort=date' and 'filter=new' parameters.
+
+- `merge`: If you use 'merge', it will add or update the specified query parameters without removing any existing ones.
+
+```typescript
+
+this.router.navigate(['edit'], {
+  relativeTo: this.route,
+  queryParamsHandling: 'merge',
+  queryParams: { sort: 'date', filter: 'new' }
+});
+
+
+
+```
+
+Resulting URL: `/products/edit?category=electronics&sort=date&filter=new`,
+>Notice that it merged the new parameters 'sort' and 'filter' with the existing ones.
+
+- [Lazy Loading](https://www.digitalocean.com/community/tutorials/angular-lazy-loading)

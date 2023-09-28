@@ -7,11 +7,9 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
   providedIn: 'root',
 })
 export class RecipesService {
-  recipeSelected = new EventEmitter<Recipe>();
-
   private recipes: Recipe[] = [
     new Recipe(
-      'A Test Recipe',
+      'A Big Burger',
       'This is simply a test',
       'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',
       [new Ingredient('Meat', 10), new Ingredient('French Fires', 10)]
@@ -30,6 +28,21 @@ export class RecipesService {
     return this.recipes;
   }
 
+  getRecipe(index: number): Recipe {
+    return this.recipes[index];
+  }
+
+  addRecipe(newRecipe: Recipe): void {
+    this.recipes.push(newRecipe);
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe): void {
+    this.recipes[index] = newRecipe;
+  }
+
+  deleteRecipe(index: number): void {
+    this.recipes.splice(index, 1);
+  }
   addIngredientToShoppingList(ingredients: Ingredient[]) {
     this.slService.addIngredients(ingredients);
   }

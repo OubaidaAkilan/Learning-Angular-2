@@ -1,0 +1,18 @@
+.container {
+  margin-top: 30px;
+}
+
+.err-text{
+  color: red;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+/* 
+ the difference lines in what the selector is applied to:
+
+input.ng-invalid targets input elements with the class ng-invalid.
+input .ng-invalid targets elements with the class ng-invalid that are descendants 
+of input elements. */

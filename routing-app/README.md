@@ -145,4 +145,86 @@ this.router.navigate(['edit'], {
 Resulting URL: `/products/edit?category=electronics&sort=date&filter=new`,
 >Notice that it merged the new parameters 'sort' and 'filter' with the existing ones.
 
+### How to pass static or dynamic data using the Route?
+
+Passing static data to a route:
+
+- We can do that using the Angular route data property of the route. The route data property can contain an array of arbitrary string key-value pairs. You can use the static data to store items such as page title, I used this article [Angular Pass Data to Route: Dynamic/Static](https://www.tektutorialshub.com/angular/angular-pass-data-to-route/#:~:text=Angular%20allows%20us%20to%20pass,use%20the%20history%20state%20object.)  
+
+```typescript
+
+{ path: 'static', component: StaticComponent, data :{ id:'1', name:"Omar"}},
+
+```
+
+- The data value will be located in the data property of the ActivatedRoute service
+
+```typescript
+ngOnInit() {
+      this.activatedroute.data.subscribe(data => {
+          this.product=data;
+      })
+}
+```
+
+Passing Dynamic data to a Route:
+
+- We can do that using the state object, the state can be provided in two ways.
+
+>Note that you will lose the dynamic data if the page is refreshed.
+
+1- Using routerLink directive
+
+```typescript
+<a [routerLink]="['dynamic']" [state]="{ id:1 , name:'Angular'}">Dynamic Data</a>
+```
+
+2- Using navigateByUrl
+
+```typescript
+this.router.navigateByUrl('/dynamic', { state: { id:1 , name:'Angular' } });
+```
+
+>We can not store primitive types like strings or numbers etc. For example, the following code results in an error because we are passing a string.
+
+```typescript
+this.router.navigateByUrl('/dynamic', { state:  'Angular' });
+```
+
+>You can only assign an object to the state object. The following code is ok.
+
+```typescript
+this.router.navigateByUrl('/dynamic', { state: {name: 'Angular' } });
+```
+
+- The state can be accessed by using the getCurrentNavigation method of the router (works only in the constructor)
+
+```typescript
+this.router.getCurrentNavigation().extras.state
+```
+
+Or use the history.state in the ngOnInit.
+
+```typescript
+console.log(history.state)
+```
+
+or use the getState method of the Location Service. This method is available in Angular 8+
+
+```typescript
+import { Location } from '@angular/common';
+ 
+export class SomeComponent
+{
+  products:Product[];
+ 
+  constructor(private location:Location){
+  }
+ 
+  ngOnInit() {
+    console.log(this.location.getState());
+  }
+}
+```
+
 - [Lazy Loading](https://www.digitalocean.com/community/tutorials/angular-lazy-loading)

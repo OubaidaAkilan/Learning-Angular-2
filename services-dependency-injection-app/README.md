@@ -2,6 +2,7 @@
 
 ## Dependency Injection DI
 
+
  Is a design pattern used in software development to achieve a loosely coupled architecture, making code more modular, maintainable, and testable. In simple terms, it's a way to provide the dependencies (external objects or services) that a class or function needs, rather than letting it create them itself.
 
  ```typescript
@@ -49,6 +50,7 @@ Dependency injection is particularly useful for testing, as it allows you to inj
 
 **Dependencies:** It is tools like (data or methods, featuers) whereas we can add it into the component to work correctly.  
 
+
 Assume we have a treehouse as a component and to be the treehouse intresting and funny we should provide a ladder for it.  
 A ladder here as (Dependencies) because the treehouse that represent a (component) depend on it, and here when you try to provide the depndencies for the component called (Dependency Injection).  
 
@@ -69,6 +71,7 @@ ng g s [service-name]
 
 > ***Note***: *Don't do this step with its children and if the parent's component has service don't do this one too, don't ignore this note because If you did that, the service will not work correctly.(review the hierarchical Injector )*
 
+
 ```typescript
 import { AccountService } from '../services/account.service';
 
@@ -80,6 +83,7 @@ import { AccountService } from '../services/account.service';
 })
 ```
 
+
 * Inject the service into the component through its constructor
 
 ```typescript
@@ -90,6 +94,7 @@ constructor(private accountService: AccountService) {}
 
 * APPModule => Same instance of service is availabe Application-wide.
 * AppComponent => Same instance of service is available for all components "But not for other services".
+
 * Any Other Component => Same instance of service is available for the component and all its children components.
 
 ## Full Example

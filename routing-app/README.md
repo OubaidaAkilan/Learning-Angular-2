@@ -227,4 +227,23 @@ export class SomeComponent
 }
 ```
 
+### Route guard
+
+In Angular, when you navigate from one view (component) to another, you often use the Angular Router. Route guards are mechanisms that allow you to control whether a route can be activated or deactivated.
+
+[Everything you need to know about route Guard in Angular](https://itnext.io/everything-you-need-to-know-about-route-guard-in-angular-697a062d3198)
+
+- `CanActivate`:Is a route guard that allows or denies access to a route based on the logic specified in the guard.
+
+[In my code](https://github.com/OubaidaAkilan/Learning-Angular-2/blob/main/routing-app/src/app/auth-guard.service.ts)
+
+- `CanMatch`:Is a new feature that was introduced in Angular v14.2. It will activate the route and load the lazy-loaded component if all guards return true, otherwise it will navigate to the next route with the same name.
+
+- `CanActivateChild`
+
+- `CanDeactivate`:Is used to control the navigation away from a route. It allows you to prevent the user from leaving a route or a component until some condition is met, or to prompt the user for confirmation before navigating away.
+
+>Note: It’s commonly used when working with forms to prevent the user from navigating away if the form has been modified but not yet submitted. We can display a modal dialog with a warning message to notify the user of any unsaved changes.
+
+
 - [Lazy Loading](https://www.digitalocean.com/community/tutorials/angular-lazy-loading)

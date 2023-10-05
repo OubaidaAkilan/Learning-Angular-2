@@ -55,7 +55,7 @@ this.signupForm = new FormGroup({
 
 7- Don't forget to add the ngSubmit event to submit the form:
    ```html
-<form [formGroup]="signupForm" (ngSubmit)="onSubmit">
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
   ```
 8- When working with reactive forms, you cannot use ngModel to access controls. Instead, use the following approach:
    ```html

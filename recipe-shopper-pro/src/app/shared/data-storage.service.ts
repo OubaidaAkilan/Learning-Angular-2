@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RecipesService } from '../recipes/recipes.service';
 import { Recipe } from '../recipes/recipe.model';
-import { Observable, tap } from 'rxjs';
+import { Observable, exhaustMap, take, tap } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable( {
   providedIn: 'root',
@@ -10,7 +11,8 @@ import { Observable, tap } from 'rxjs';
 export class DataStorageService {
   constructor (
     private recipeService: RecipesService,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   //===Edit and Store Recipes
@@ -35,7 +37,6 @@ export class DataStorageService {
       )
       .pipe(
         tap( ( data ) => {
-          
           this.recipeService.setRecipesList( data );
         } )
       );

@@ -7,12 +7,14 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { EditRecipeComponent } from './recipes/recipe-edit/edit-recipe.component';
 import { RecipesResolveService } from './recipes/recipes-resolve.service';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+
   {
     path: 'recipes',
     component: RecipesComponent,
+    canActivate: [ AuthGuard ],
     children: [
       { path: '', component: RecipeStartComponent, pathMatch: 'full' },
       {
@@ -43,6 +45,7 @@ const appRoutes: Routes = [
     component: AuthComponent,
     pathMatch: 'full',
   },
+  { path: '', redirectTo: 'recipes', pathMatch: 'full' },
 ];
 @NgModule( {
   imports: [ RouterModule.forRoot( appRoutes ) ],

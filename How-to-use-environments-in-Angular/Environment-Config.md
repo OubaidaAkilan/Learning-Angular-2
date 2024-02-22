@@ -6,7 +6,7 @@
 
 ![environment folder within src folder](image.png)  
 
-2- Inside environment folder create all type of environments files.  
+2- Inside environment folder create all types of environments files.  
 
 ![all type of environments files](image-1.png)  
 
@@ -61,7 +61,47 @@ ng build --configuration development
 ng serve --configuration production
 ng test --configuration qa
 ```
+### Now, we want to add new local environments into our app 
+1- Create new folder called local inside the environment folder and new local environment files.
 
+![local folder](image-9.png)  
+
+`environment.local.prod.ts`  
+
+![local-prod.png](local-prod.png)
+
+`environment.local.qa.ts`  
+
+![local-qa.png](local-qa.png)
+
+2-Within angular.json file we will modify the configuration property and add the new environments there. 
+
+![alt text](image-10.png)
+
+3- Focus on the path file inside the `fileReplacements` property.
+
+4- Now we will modify the configuration for `serve` property  
+
+![alt text](image-11.png)
+
+### Important notes  
+- There is a relation between `build` and `serve` properties, so you should focus on them `path file`, `name` of files.  
+
+- Any change inside `angular.json` file kill the app and run it again using your preferred environment 🫣.  
+
+```js
+ng serve --configuration=local-prod
+ng serve --configuration=local-qa
+ng serve --configuration=production
+ng serve --configuration=qa
+ng serve // will run the default environment `development`
+```
+
+
+
+
+## Reference:
+[Ref-1](https://rubenperegrina.com/how-to-use-environments-in-angular?ref=dailydev)
 
 
 
